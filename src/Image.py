@@ -1,5 +1,9 @@
 import pyautogui
 
+"""
+图形匹配
+"""
+
 
 def match(filename):
     # 在屏幕上查找图像返回(左、顶、宽、高)的第一个位置（配合list函数），如果屏幕上找不到图像返回None,

@@ -5,38 +5,9 @@ import win32con
 import Setting
 import Image
 
-
-def endcheck():
-    # 结束界面的图片
-    filename = Setting.endimgcheck()
-    # 匹配一下
-    end_loc = Image.match(filename)
-    if end_loc is not None:
-        # 如果匹配到了，就直接把4个坐标拿过来
-        for i in range(len(end_loc)):
-            endregion_lefttop_x = end_loc[i].left
-            endregion_lefttop_y = end_loc[i].top
-            endregion_rightbot_x = end_loc[i].left + end_loc[i].width
-            endregion_rightbot_y = end_loc[i].top + end_loc[i].height
-            # 移动到随机生成的坐标，防检测
-            win32api.SetCursorPos(
-                suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
-            print("结算中")
-            # # 要等一会，跳出界面点才有用
-            # time.sleep(1)
-            print(i, "在狂点")
-            # 随机点击次数6到8次
-            for fre in range(0, random.randint(1, 3)):
-                print(fre)
-                # 移动到随机生成的坐标，防检测
-                win32api.SetCursorPos(
-                    suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
-                # 单击
-                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
-                # 每次点击间隔随机
-                time.sleep(random.uniform(0.5, 0.8))
-    else:
-        print("error")
+"""
+开始、战斗、结束的具体功能
+"""
 
 
 def start():
@@ -126,20 +97,42 @@ def end():
     time.sleep(1.5)
 
 
+def endcheck():
+    # 结束界面的图片
+    filename = Setting.endimgcheck()
+    # 匹配一下
+    end_loc = Image.match(filename)
+    if end_loc is not None:
+        # 如果匹配到了，就直接把4个坐标拿过来
+        for i in range(len(end_loc)):
+            endregion_lefttop_x = end_loc[i].left
+            endregion_lefttop_y = end_loc[i].top
+            endregion_rightbot_x = end_loc[i].left + end_loc[i].width
+            endregion_rightbot_y = end_loc[i].top + end_loc[i].height
+            # 移动到随机生成的坐标，防检测
+            win32api.SetCursorPos(
+                suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+            print("结算中")
+            # # 要等一会，跳出界面点才有用
+            # time.sleep(1)
+            print(i, "在狂点")
+            # 随机点击次数6到8次
+            for fre in range(0, random.randint(1, 3)):
+                print(fre)
+                # 移动到随机生成的坐标，防检测
+                win32api.SetCursorPos(
+                    suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+                # 单击
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+                # 每次点击间隔随机
+                time.sleep(random.uniform(0.5, 0.8))
+    else:
+        print("error")
+
+
 # 先确定点击的范围
 def suiji(xmin, ymin, xmax, ymax):
     # 在此范围内随机生成一个数
     x = random.randint(xmin, xmax)
     y = random.randint(ymin, ymax)
     return x, y
-
-# # 后期要加一个兼容，万一弹出个悬赏框，要点掉
-# def check():
-#     print("点太快了，等1秒吧")
-#     time.sleep(1)  # 现在遇到的情况是，end那边点太快了，还没来得及进准备界面呢，所以等1秒就行
-#     start()  # 然后再start就行
-#
-#
-# def test():
-#     win32api.SetCursorPos((705, 1060))  # 防检测
-#     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 单击

@@ -1,3 +1,7 @@
+"""
+配置文件
+"""
+
 # 挂一次的时间
 time = 17
 
@@ -19,10 +23,10 @@ def battleimage():
 
 # 结束界面的图片位置
 def endimage():
-    templateimage = r"E:\test\end1.png"
+    templateimage = r"E:\test\end.png"
     return templateimage
 
-
+# 结束界面校验的图片位置
 def endimgcheck():
-    templateimage = r"E:\test\end2.png"
+    templateimage = r"E:\test\check.png"
     return templateimage
