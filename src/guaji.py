@@ -44,14 +44,14 @@ def battle():
     battle_loc = Image.match(filename)
     if battle_loc is not None:
         # 如果匹配到了，就把list拿过来，取到4个点
-        for i in range(len(battle_loc)):
-            battleregion_lefttop_x = battle_loc[i].left
-            battleregion_lefttop_y = battle_loc[i].top
-            battleregion_rightbot_x = battle_loc[i].left + battle_loc[i].width
-            battleregion_rightbot_y = battle_loc[i].top + battle_loc[i].height
-            # 移动到随机生成的坐标，防检测
-            win32api.SetCursorPos(
-                suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y))
+        # for i in range(len(battle_loc)):
+        #     battleregion_lefttop_x = battle_loc[i].left
+        #     battleregion_lefttop_y = battle_loc[i].top
+        #     battleregion_rightbot_x = battle_loc[i].left + battle_loc[i].width
+        #     battleregion_rightbot_y = battle_loc[i].top + battle_loc[i].height
+        #     # 移动到随机生成的坐标，防检测
+        #     win32api.SetCursorPos(
+        #         suiji(battleregion_lefttop_x, battleregion_lefttop_y, battleregion_rightbot_x, battleregion_rightbot_y))
         print("正在战斗")
         # 这个就是挂机的时间
         time.sleep(Setting.time)
@@ -60,6 +60,42 @@ def battle():
         time.sleep(3)
 
 
+# def end():
+#     # 结束界面的图片
+#     filename = Setting.endimage()
+#     # 匹配一下
+#     end_loc = Image.match(filename)
+#     if end_loc is not None:
+#         # 如果匹配到了，就把list拿过来，取到4个点
+#         for i in range(len(end_loc)):
+#             endregion_lefttop_x = end_loc[i].left
+#             endregion_lefttop_y = end_loc[i].top
+#             endregion_rightbot_x = end_loc[i].left + end_loc[i].width
+#             endregion_rightbot_y = end_loc[i].top + end_loc[i].height
+#             # 移动到随机生成的坐标，防检测
+#             win32api.SetCursorPos(
+#                 suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+#             print("结算中")
+#             # # 要等一会，跳出界面点才有用
+#             # time.sleep(1)
+#             print(i, "在狂点")
+#             # 随机点击次数6到8次
+#             for fre in range(0, random.randint(6, 8)):
+#                 print(fre)
+#                 # 移动到随机生成的坐标，防检测
+#                 win32api.SetCursorPos(
+#                     suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+#                 # 单击
+#                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+#                 # 每次点击间隔随机
+#                 time.sleep(random.uniform(0.5, 0.8))
+#     else:
+#         print("未匹配到")
+#         time.sleep(2.5)
+#         endcheck()
+#     # 等下回到开始界面
+#     time.sleep(1.5)
+
 def end():
     # 结束界面的图片
     filename = Setting.endimage()
@@ -67,6 +103,7 @@ def end():
     end_loc = Image.match(filename)
     if end_loc is not None:
         # 如果匹配到了，就把list拿过来，取到4个点
+        # 第一阶段的点击
         for i in range(len(end_loc)):
             endregion_lefttop_x = end_loc[i].left
             endregion_lefttop_y = end_loc[i].top
@@ -78,9 +115,32 @@ def end():
             print("结算中")
             # # 要等一会，跳出界面点才有用
             # time.sleep(1)
-            print(i, "在狂点")
+            print("队友", i, "在狂点")
             # 随机点击次数6到8次
-            for fre in range(0, random.randint(6, 8)):
+            for fre in range(0, random.randint(1, 3)):
+                print(fre)
+                # 移动到随机生成的坐标，防检测
+                win32api.SetCursorPos(
+                    suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+                # 单击
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+                # 每次点击间隔随机
+                time.sleep(random.uniform(0.2, 0.5))
+        # 第二阶段的点击
+        for i in range(len(end_loc)):
+            endregion_lefttop_x = end_loc[i].left
+            endregion_lefttop_y = end_loc[i].top
+            endregion_rightbot_x = end_loc[i].left + end_loc[i].width
+            endregion_rightbot_y = end_loc[i].top + end_loc[i].height
+            # 移动到随机生成的坐标，防检测
+            win32api.SetCursorPos(
+                suiji(endregion_lefttop_x, endregion_lefttop_y, endregion_rightbot_x, endregion_rightbot_y))
+            print("结算中")
+            # # 要等一会，跳出界面点才有用
+            # time.sleep(1)
+            print("队友", i, "在狂点")
+            # 随机点击次数6到8次
+            for fre in range(0, random.randint(4, 6)):
                 print(fre)
                 # 移动到随机生成的坐标，防检测
                 win32api.SetCursorPos(
