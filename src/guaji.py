@@ -117,7 +117,7 @@ def end():
             # time.sleep(1)
             print("队友", i, "在狂点")
             # 随机点击次数6到8次
-            for fre in range(0, random.randint(1, 3)):
+            for fre in range(0, random.randint(2, 3)):
                 print(fre)
                 # 移动到随机生成的坐标，防检测
                 win32api.SetCursorPos(
@@ -125,7 +125,7 @@ def end():
                 # 单击
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
                 # 每次点击间隔随机
-                time.sleep(random.uniform(0.2, 0.5))
+                time.sleep(random.uniform(0.3, 0.5))
         # 第二阶段的点击
         for i in range(len(end_loc)):
             endregion_lefttop_x = end_loc[i].left
@@ -148,13 +148,13 @@ def end():
                 # 单击
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP | win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
                 # 每次点击间隔随机
-                time.sleep(random.uniform(0.5, 0.8))
+                time.sleep(random.uniform(0.4, 0.7))
     else:
         print("未匹配到")
         time.sleep(2.5)
         endcheck()
     # 等下回到开始界面
-    time.sleep(1.5)
+    time.sleep(1)
 
 
 def endcheck():
